@@ -17,9 +17,12 @@ export default defineConfig({
   server: {
     host: '0.0.0.0',
     port: 5173,
-    allowedHosts: true,
+    allowedHosts: ["preview--future-of-russia-education.poehali.dev"], // Явно указываем допустимый хост
     hmr: {
-      overlay: false // Disables the error overlay if you only want console errors
+      host: 'localhost', // Используем localhost для HMR соединений
+      protocol: 'ws', // Используем ws протокол
+      clientPort: 443, // Порт для клиента за прокси
+      overlay: false, // Отключаем оверлей с ошибками
     }
   },
 });

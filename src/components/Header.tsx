@@ -1,17 +1,24 @@
-
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, User } from 'lucide-react';
 import Logo from './Logo';
 import MarqueeText from './MarqueeText';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    // Проверяем, авторизован ли пользователь
+    const authStatus = localStorage.getItem("isAuthenticated");
+    setIsAuthenticated(authStatus === "true");
+  }, []);
 
   const navItems = [
     { name: 'Главная', href: '/' },
     { name: 'О проекте', href: '/#about' },
     { name: 'Треки', href: '/#tracks' },
+    { name: 'Галерея', href: '/gallery' },
     { name: 'Куратор', href: '/#curator' },
   ];
 
@@ -36,6 +43,23 @@ const Header = () => {
               {item.name}
             </Link>
           ))}
+          
+          {isAuthenticated ? (
+            <Link 
+              to="/dashboard"
+              className="text-primary font-medium flex items-center"
+            >
+              <User className="mr-1 h-4 w-4" />
+              Панель управления
+            </Link>
+          ) : (
+            <Link 
+              to="/login"
+              className="text-gray-700 hover:text-primary font-medium transition-colors"
+            >
+              Вход
+            </Link>
+          )}
         </nav>
         
         {/* Mobile Navigation Toggle */}
@@ -65,6 +89,25 @@ const Header = () => {
                   {item.name}
                 </Link>
               ))}
+              
+              {isAuthenticated ? (
+                <Link 
+                  to="/dashboard"
+                  className="text-primary text-xl font-medium flex items-center"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <User className="mr-2 h-5 w-5" />
+                  Панель управления
+                </Link>
+              ) : (
+                <Link 
+                  to="/login"
+                  className="text-gray-900 text-xl font-medium hover:text-primary"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Вход
+                </Link>
+              )}
             </div>
           </div>
         )}
