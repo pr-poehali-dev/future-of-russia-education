@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
 import TrackCard from "@/components/TrackCard";
+import MarqueeText from "@/components/MarqueeText";
 
 const Index = () => {
   const tracks = [
@@ -66,6 +67,8 @@ const Index = () => {
       <main className="flex-grow">
         <HeroSection />
         
+        <MarqueeText />
+        
         {/* О проекте */}
         <section id="about" className="py-16 bg-gray-50">
           <div className="container mx-auto px-4">
@@ -126,11 +129,10 @@ const Index = () => {
                     <p className="text-secondary font-medium mb-4">Куратор образовательного проекта "Будущее России"</p>
                     <div className="space-y-3 text-gray-700">
                       <p>
-                        Опытный педагог и организатор образовательных программ для детей дошкольного возраста.
+                        14-летний ученик, реализующий образовательные проекты "Будущее России" и "Уроки Победы".
                       </p>
                       <p>
-                        Под руководством Антона Александровича проект "Будущее России" успешно реализует комплексный 
-                        подход к развитию детей и подготовке их к школьному обучению и участию в программе "Орлята России".
+                        Наставник программы "Орлята России" и Председатель старшеклассников наставников Орлят России.
                       </p>
                       <p>
                         "Наша цель - помочь каждому ребенку раскрыть свой потенциал и вырасти достойным гражданином 
